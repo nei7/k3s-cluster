@@ -17,6 +17,9 @@ spec:
       containers:
         - name: blog-deployment
           image: nei7/blog:master
+          envFrom:
+            - configMapRef:
+                name: blog-config
           resources:
             requests:
               cpu: "300m"
