@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: blog-ingress
+  namespace: blog
+
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: "blog.fszarek.me"
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: blog
+                port:
+                  number: 80

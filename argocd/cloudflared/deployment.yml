@@ -65,8 +65,11 @@ data:
       noTLSVerify: true 
 
     ingress:
+        - hostname: argocd.fszarek.me
+          service: http://argocd-server.argocd.svc.cluster.local:443
+
         - hostname: "*.fszarek.me"
-          service: https://ingress-nginx.ingress-nginx-controller.svc.cluster.local:80
+          service: http://ingress-nginx-controller.ingress-nginx.svc.cluster.local:80
 
 
         - service: http_status:404
