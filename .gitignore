@@ -1,1 +1,2 @@
-blog.config.yml
+argocd/blog/configmap.yml
+cloudflared/configmap.yml
