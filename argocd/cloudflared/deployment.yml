@@ -3,6 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: cloudflared
+  namespace: cloudflared
 spec:
   selector:
     matchLabels:
@@ -47,3 +48,25 @@ spec:
             items:
               - key: config.yaml
                 path: config.yaml
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cloudflared
+  namespace: cloudflared
+data:
+  config.yaml: |
+    tunnel: d91b7ddc-5e9d-43ae-8335-8982123aef59
+    credentials-file: /etc/cloudflared/creds/d91b7ddc-5e9d-43ae-8335-8982123aef59.json
+    metrics: 0.0.0.0:2000
+    no-autoupdate: true
+
+    originRequest:
+      noTLSVerify: true 
+
+    ingress:
+        - hostname: *.fszarek.me
+          service: https://ingress-nginx.ingress-nginx-controller.svc.cluster.local:80
+
+
+        - service: http_status:404

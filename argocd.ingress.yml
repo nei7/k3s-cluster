@@ -19,4 +19,4 @@ spec:
                 name: argocd-server
                 port:
                   name: http
-      host: argo.org.local
+      host: argocd.fszarek.me
