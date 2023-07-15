@@ -65,7 +65,7 @@ data:
       noTLSVerify: true 
 
     ingress:
-        - hostname: *.fszarek.me
+        - hostname: "*.fszarek.me"
           service: https://ingress-nginx.ingress-nginx-controller.svc.cluster.local:80
 
 
