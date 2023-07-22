@@ -1,0 +1,15 @@
+hostname: rpi<number>
+
+groups:
+  - ubuntu: [root, sys]
+
+users:
+  - name: pi
+    gecos: pi
+    groups: sudo
+    shell: /bin/bash
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    lock_passwd: true
+    ssh_import_id: None
+    ssh_authorized_keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDVmCUeihi4kuOd4arWENEbbxynDDjHk3oPeqWQ8jrgYsf+dW7Wd13FzPm3pj9k+zUG5P2NILpmpcGJsx7f5zsmzcmuA1tjnwemp/mbR3TSOgXXBEk+wX6hAQFLcAMrVGe6Gh9isBKjbkO7nb/bwZ+unijVSlsfRQvz1CjZVm0f/6BU2GD5+1pmUA2deoqW+9jWy7AEyObCM51AZWqsJv2IC4PQ2GVLEy5wibngOqsjdIVePF7ZIz6WW4xvF5iBWHZnzET+YGkRQNmPzzg1xiGprsiIaoBD0YAKQkTU2KMaHh6v1Q5L4dhmJ6T0+mZn5aP0jfSNwLxyjeymbGGpF9M3/YSMTlw513LwXgYD0bKvVZxkVldCjfFaqmfMKFq8fXUcoN+syQkFDMvKZPzioUG1gvHczYnr4sjnRWw94XXHRl5Dx8E/nzHkhPJfbEbp2d+JCJqKL1qkA7azBq8j2Frzvy/BzKGWdzVUyjS53ipKim6+3MIDmR4FUaORw1LG0+M= nei@neiarch
