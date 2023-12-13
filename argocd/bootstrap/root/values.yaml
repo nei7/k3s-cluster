@@ -1,0 +1,23 @@
+gitops:
+  repo: https://github.com/nei7/k3s-cluster
+  revision: master
+
+apps:
+  # CDRs App
+  - name: crds
+    namespace: default
+    path: argocd/bootstrap/crds
+    syncWave: 0
+
+  - name: longhorn
+    namespace: longhorn-system
+    path: argocd/system/longhorn-system
+    syncWave: 1
+
+  - name: monitoring
+    namespace: monitoring
+    path: argocd/system/monitoring
+    syncWave: 2
+    helm:
+      # skip installation kube-prometheus-stack CDRs
+      skipCrds: true

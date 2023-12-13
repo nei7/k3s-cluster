@@ -1,0 +1,14 @@
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: logging
+  annotations:
+    linkerd.io/inject: enabled
+---
+kind: Namespace
+apiVersion: v1
+metadata:
+  name: monitoring
+  annotations:
+    linkerd.io/inject: enabled
