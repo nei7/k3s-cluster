@@ -1,16 +1,6 @@
 # Ingress configuration
 ingress:
   host: monitoring.fszarek.me
-  # configure cert-manager issuer
-  certmanager:
-    # tlsIssuer=letsecrypt to generate valid TLS certficiate using IONOS API
-    # tlsIssuer=ca to generate a CA-signed certificate (not valid)
-    tlsIssuer: letsencrypt
-  # Enabling traefik basic authorization, reusing global middleware created for Traefik
-  basicAuth:
-    enable: true
-    middlewareName: basic-auth
-    middlewareNamespace: traefik
 
 # Enable K3s metrics
 k3sMetrics:
