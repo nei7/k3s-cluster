@@ -12,7 +12,7 @@ spec:
     - host: {{ .Values.ingress.host }}
       http:
         paths:
-          - path: /grafana/
+          - path: /grafana
             pathType: Prefix
             backend:
               service:

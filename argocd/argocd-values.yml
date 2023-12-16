@@ -28,7 +28,7 @@ server:
     ## Enable creation of ingress resource
     enabled: true
     ## Add ingressClassName to the Ingress
-    ingressClassName: nginx
+    ingressClassName: traefik
     # ingress host
     hosts:
       - argocd.fszarek.com
