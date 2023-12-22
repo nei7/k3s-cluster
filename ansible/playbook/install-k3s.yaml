@@ -1,0 +1,47 @@
+- name: Download k3s
+  hosts: all
+  tasks:
+    - name: Check if k3s is installed
+      ansible.builtin.systemd:
+        name: k3s
+      register: k3s_status
+
+    - name: Download k3s installer
+      become: true
+      when: k3s_status.status.ActiveState == "inactive"
+      ansible.builtin.get_url:
+        url: https://get.k3s.io
+        dest: /tmp/k3s-install.sh
+        mode: 0755
+      changed_when: true
+
+- name: Setup k3s on master node
+  hosts: master
+  tasks:
+    - name: Execute k3s installer
+      become: true
+      when: k3s_status.status.ActiveState == "inactive"
+      ansible.builtin.command: /tmp/k3s-install.sh
+      changed_when: true
+
+    - name: Get node token
+      become: true
+      ansible.builtin.shell: cat /var/lib/rancher/k3s/server/node-token
+      register: nodetoken
+
+    - name: Display nodetoken
+      ansible.builtin.debug:
+        var: nodetoken.stdout
+
+- name: Install k3s on worker nodes
+  hosts: worker
+  tasks:
+    - name: Execute k3s installer
+      become: true
+      when: k3s_status.status.ActiveState == "inactive"
+      ansible.builtin.command:
+        cmd: /tmp/k3s-install.sh
+      environment:
+        K3S_URL: "https://{{ hostvars[groups['master'][0]]['ansible_default_ipv4']['address'] }}:6443"
+        K3S_TOKEN: "{{ hostvars[groups['master'][0]]['nodetoken'].stdout }}"
+      changed_when: true

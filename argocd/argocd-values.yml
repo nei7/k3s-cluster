@@ -1,7 +1,5 @@
 configs:
   params:
-    # Run server without TLS
-    # Ingress NGINX finishes TLS connections
     server.insecure: true
   cm:
     statusbadge.enabled: "true"
@@ -40,13 +38,3 @@ server:
     ## Default ingress path
     paths:
       - /
-
-    ## Ingress annotations
-    annotations:
-      # Linkerd configuration. Configure Service as Upstream
-      # Enable cert-manager to create automatically the SSL certificate and store in Secret
-      # Possible Cluster-Issuer values:
-      #   * 'letsencrypt-issuer' (valid TLS certificate using IONOS API)
-      #   * 'ca-issuer' (CA-signed certificate, not valid)
-      cert-manager.io/cluster-issuer: letsencrypt-issuer
-      cert-manager.io/common-name: argocd.fszarek.me
