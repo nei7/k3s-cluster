@@ -5,7 +5,15 @@ kind: Ingress
 metadata:
   name: ingress-grafana
   namespace: {{ .Release.Namespace }}
+  annotations:
+    cert-manager.io/cluster-issuer: {{ .Values.ingress.certmanager.tlsIssuer }}-issuer
+    cert-manager.io/common-name: {{ .Values.ingress.host }}
 spec:
+  ingressClassName: traefik
+  tls:
+    - hosts:
+        - {{ .Values.ingress.host }}
+      secretName: monitoring-tls
   rules:
     - host: {{ .Values.ingress.host }}
       http:
@@ -25,7 +33,15 @@ kind: Ingress
 metadata:
   name: ingress-prometheus
   namespace: {{ .Release.Namespace }}
+
+  annotations:
+    cert-manager.io/cluster-issuer: {{ .Values.ingress.certmanager.tlsIssuer }}-issuer
+    cert-manager.io/common-name: {{ .Values.ingress.host }}
 spec:
+  tls:
+    - hosts:
+        - {{ .Values.ingress.host }}
+      secretName: monitoring-tls
   rules:
     - host: {{ .Values.ingress.host }}
       http:
@@ -46,7 +62,14 @@ kind: Ingress
 metadata:
   name: ingress-alertmanager
   namespace: {{ .Release.Namespace }}
+  annotations:
+    cert-manager.io/cluster-issuer: {{ .Values.ingress.certmanager.tlsIssuer }}-issuer
+    cert-manager.io/common-name: {{ .Values.ingress.host }}
 spec:
+  tls:
+    - hosts:
+        - {{ .Values.ingress.host }}
+      secretName: monitoring-tls
   rules:
     - host: {{ .Values.ingress.host }}
       http:

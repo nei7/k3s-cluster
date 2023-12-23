@@ -1,7 +1,9 @@
 # Ingress configuration
 ingress:
   host: monitoring.fszarek.me
-
+  certmanager:
+      tlsIssuer: letsencrypt
+      
 # Enable K3s metrics
 k3sMetrics:
   enabled: true
