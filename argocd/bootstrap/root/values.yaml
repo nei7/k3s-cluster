@@ -19,10 +19,10 @@ apps:
     path: argocd/system/longhorn-system
     syncWave: 2
 
-  # - name: monitoring
-  #   namespace: monitoring
-  #   path: argocd/system/monitoring
-  #   syncWave: 3
-  #   helm:
-  #     # skip installation kube-prometheus-stack CDRs
-  #     skipCrds: true
+  - name: monitoring
+    namespace: monitoring
+    path: argocd/system/monitoring
+    syncWave: 3
+    helm:
+      # skip installation kube-prometheus-stack CDRs
+      skipCrds: true
