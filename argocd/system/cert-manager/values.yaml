@@ -1,0 +1,12 @@
+ca:
+  enabled: true
+
+
+acme:
+  dns01:
+    cloudflare:
+      enabled: true
+  acme_issuer_email: franciszek.szarek2@gmail.com
+
+cert-manager:
+  installCRDs: false

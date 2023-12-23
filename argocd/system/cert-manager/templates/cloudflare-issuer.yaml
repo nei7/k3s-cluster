@@ -1,0 +1,22 @@
+{{- if .Values.acme.dns01.cloudflare.enabled }}
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: letsencrypt-issuer
+  namespace: {{ .Release.Namespace }}
+spec:
+  acme:
+    # The ACME server URL
+    server: https://acme-v02.api.letsencrypt.org/directory
+    # Email address used for ACME registration
+    email: {{ .Values.acme.acme_issuer_email }}
+    privateKeySecretRef:
+      name: letsencrypt-cloudflare-prod
+
+    solvers:
+      - dns01:
+          cloudflare:
+            apiTokenSecretRef:
+              name:  cloudflare-api-key
+              key: CLOUDFLARE_SECRET
+{{- end -}}

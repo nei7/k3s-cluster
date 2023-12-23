@@ -14,15 +14,19 @@ apps:
     path: argocd/system/external-secrets
     syncWave: 1
 
+  - name: cert-manager
+    namespace: cert-manager
+    path: argocd/system/cert-manager
+    syncWave: 2
+    
   - name: longhorn
     namespace: longhorn-system
     path: argocd/system/longhorn-system
-    syncWave: 2
+    syncWave: 3
 
   - name: monitoring
     namespace: monitoring
     path: argocd/system/monitoring
-    syncWave: 3
+    syncWave: 4
     helm:
-      # skip installation kube-prometheus-stack CDRs
       skipCrds: true

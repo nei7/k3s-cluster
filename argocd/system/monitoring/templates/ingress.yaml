@@ -5,8 +5,6 @@ kind: Ingress
 metadata:
   name: ingress-grafana
   namespace: {{ .Release.Namespace }}
-  annotations:
-    kubernetes.io/ingress.class: traefik
 spec:
   rules:
     - host: {{ .Values.ingress.host }}
@@ -27,8 +25,6 @@ kind: Ingress
 metadata:
   name: ingress-prometheus
   namespace: {{ .Release.Namespace }}
-  annotations:
-    kubernetes.io/ingress.class: traefik
 spec:
   rules:
     - host: {{ .Values.ingress.host }}
@@ -50,8 +46,6 @@ kind: Ingress
 metadata:
   name: ingress-alertmanager
   namespace: {{ .Release.Namespace }}
-  annotations:
-    kubernetes.io/ingress.class: traefik
 spec:
   rules:
     - host: {{ .Values.ingress.host }}
