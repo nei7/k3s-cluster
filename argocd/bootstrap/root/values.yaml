@@ -18,15 +18,22 @@ apps:
     namespace: cert-manager
     path: argocd/system/cert-manager
     syncWave: 2
+
+  - name: traefik
+    namespace: traefik
+    path: argocd/system/traefik
+    syncWave: 3
+    helm:
+      skipCrds: true
     
   - name: longhorn
     namespace: longhorn-system
     path: argocd/system/longhorn-system
-    syncWave: 3
+    syncWave: 4
 
   - name: monitoring
     namespace: monitoring
     path: argocd/system/monitoring
-    syncWave: 4
+    syncWave: 5
     helm:
       skipCrds: true

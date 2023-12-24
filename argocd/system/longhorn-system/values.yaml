@@ -26,3 +26,5 @@ longhorn:
     annotations:
       cert-manager.io/cluster-issuer: letsencrypt-issuer
       cert-manager.io/common-name: longhorn.fszarek.me
+      ingress.kubernetes.io/auth-type: "basic"
+      ingress.kubernetes.io/auth-secret: traefik/basic-auth-secret
