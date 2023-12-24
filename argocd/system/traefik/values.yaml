@@ -67,40 +67,19 @@ traefik:
         terminationMessagePolicy: File
         volumeMounts:
         - mountPath: /data
-          name: data
-  # Set specific LoadBalancer IP address for Ingress service
-  service:
-    spec:
-      loadBalancerIP: 10.0.0.111
 
   providers:
     kubernetesCRD:
       enabled: true
       # Enable cross namespace references
       allowCrossNamespace: true
-    # traefik by default does not update status.loadbalancer field
-    # In argo-cd, this field is used to obtaing the ingress object health status
-    # ingress resource are not getting health status and so application gets stucked
-    # See issue https://github.com/argoproj/argo-cd/issues/968
-    # Traefik need to be confgured enabling published service
-    # https://doc.traefik.io/traefik/providers/kubernetes-ingress/#publishedservice
-    kubernetesIngress:
-      publishedService:
-        enabled: true
+ 
 
   # Enable prometheus metric service
   metrics:
     prometheus:
       service:
         enabled: true
-
-  # Configuring tracing backend
-  tracing:
-    zipkin:
-      httpEndpoint: http://tracing-tempo-distributor.tracing.svc.cluster.local:9411/api/v2/spans
-      sameSpan: true
-      id128Bit: true
-      sampleRate: 1.0
 
   # Disable dashboard ingress-route
   # It does not support tls specification yet
