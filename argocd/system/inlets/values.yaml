@@ -1,0 +1,46 @@
+replicaCount: 1
+
+# You must create a secret called "inlets-license"
+
+# kubectl create secret generic -n inlets \
+# inlets-license --from-file license=$HOME/.inlets/LICENSE
+
+provider: "digitalocean"
+region: "lon1"
+
+# Only provide LoadBalancers for Services annotated with "operator.inlets.dev/manage=1"
+# Required when using a network driver that uses IPVS instead of iptables
+annotatedOnly: false
+
+#plan: <The plan or size for your cloud instance>
+
+# provider: "gce"
+# zone: "us-central1-a"
+# projectID: "<Your GCP Project ID>"
+
+# provider: "equinix-metal"
+# region: "am6"
+# projectID: "<Your equinix-metal Project ID>"
+
+# provider: "scaleway"
+# region: "ams1"
+# organizationID: "<Your Organization ID>"
+
+# provider: "hetzner"
+# region: "fsn1"
+
+accessKeyFile: "/var/secrets/inlets/inlets-access-key"
+
+image: "ghcr.io/inlets/inlets-operator:0.17.6"
+pullPolicy: "IfNotPresent"
+
+# These should match
+inletsClientImage: "ghcr.io/inlets/inlets-pro:0.9.21"
+inletsRelease: "0.9.21"
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+maxClientMemory: 128Mi

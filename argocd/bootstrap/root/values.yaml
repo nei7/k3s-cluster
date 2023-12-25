@@ -25,15 +25,23 @@ apps:
     syncWave: 3
     helm:
       skipCrds: true
+
+  - name: inlets
+    namespace: inlets
+    path: argocd/system/inlets
+    syncWave: 4
+    helm:
+      skipCrds: true
+
     
   - name: longhorn
     namespace: longhorn-system
     path: argocd/system/longhorn-system
-    syncWave: 4
+    syncWave: 5
 
   - name: monitoring
     namespace: monitoring
     path: argocd/system/monitoring
-    syncWave: 5
+    syncWave: 6
     helm:
       skipCrds: true
