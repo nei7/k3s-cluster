@@ -24,3 +24,20 @@ spec:
         factor: 2
     syncOptions:
       - CreateNamespace=true
+
+---
+kind: Certificate
+metadata:
+  name: example-com
+  namespace: default
+spec:
+  # The secret name where cert-manager
+  # should store the signed certificate.
+  secretName: argocd-tls
+  dnsNames:
+    - argocd.fszarek.me
+
+  issuerRef:
+    group: cert-manager.k8s.cloudflare.com
+    kind: OriginIssuer
+    name: letsencrypt-issuer
