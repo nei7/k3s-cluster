@@ -37,6 +37,7 @@ metadata:
   annotations:
     cert-manager.io/cluster-issuer: {{ .Values.ingress.certmanager.tlsIssuer }}-issuer
     cert-manager.io/common-name: {{ .Values.ingress.host }}
+    traefik.ingress.kubernetes.io/router.middlewares: traefik-basic-auth@kubernetescrd
 spec:
   tls:
     - hosts:

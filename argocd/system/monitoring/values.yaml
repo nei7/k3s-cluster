@@ -46,8 +46,8 @@ kube-prometheus-stack:
   alertmanager:
     alertmanagerSpec:
       # Subpath /alertmanager configuration
-      externalUrl: http://monitoring.fszarek.me/alertmanager/
-      routePrefix: /
+      externalUrl: https://monitoring.fszarek.me
+      routePrefix: /alertmanager
       # PVC config
       storage:
         volumeClaimTemplate:
@@ -69,8 +69,9 @@ kube-prometheus-stack:
   prometheus:
     prometheusSpec:
       # Subpath /prometheus configuration
-      externalUrl: monitoring.fszarek.me/prometheus/
-      routePrefix: /
+      externalUrl: /prometheus
+      routePrefix: /prometheus
+
       # Resources request and limits
       resources:
         requests:
