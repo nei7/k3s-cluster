@@ -67,6 +67,9 @@ traefik:
             name: data
 
   providers:
+    kubernetesIngress:
+      publishedService:
+        enabled: true
     kubernetesCRD:
       enabled: true
       # Enable cross namespace references
