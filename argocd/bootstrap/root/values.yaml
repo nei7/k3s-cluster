@@ -34,10 +34,10 @@ apps:
       skipCrds: true
 
     
-  - name: longhorn
-    namespace: longhorn-system
-    path: argocd/system/longhorn-system
-    syncWave: 5
+  # - name: longhorn
+  #   namespace: longhorn-system
+  #   path: argocd/system/longhorn-system
+  #   syncWave: 5
 
   - name: monitoring
     namespace: monitoring
