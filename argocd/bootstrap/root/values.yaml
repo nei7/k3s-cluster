@@ -33,7 +33,6 @@ apps:
     helm:
       skipCrds: true
 
-    
   - name: longhorn
     namespace: longhorn-system
     path: argocd/system/longhorn-system
@@ -45,3 +44,8 @@ apps:
     syncWave: 6
     helm:
       skipCrds: true
+
+  - name: blog
+    namespace: blog
+    path: argocd/system/blog
+    syncWave: 7

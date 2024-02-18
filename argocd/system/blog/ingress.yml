@@ -1,0 +1,39 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: blog
+  namespace: blog
+
+spec:
+  tls:
+    - hosts:
+        - fszarek.me
+      secretName: blog-tls
+  rules:
+    - host: fszarek.me
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: blog
+                port:
+                  number: 80
+
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: blog
+  namespace: blog
+spec:
+  commonName: fszarek.me
+  secretName: blog-tls
+  dnsNames:
+    - fszarek.me
+  issuerRef:
+    group: cert-manager.io
+    kind: ClusterIssuer
+    name: letsencrypt-issuer

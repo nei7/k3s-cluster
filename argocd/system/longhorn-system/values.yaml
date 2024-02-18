@@ -5,7 +5,7 @@ serviceMonitor:
 
 longhorn:
   defaultSettings:
-    defaultDataPath: "/storage"
+    defaultDataPath: "/storage02"
     # Backup S3 configuration
   # Ingress Resource. Longhorn dashboard.
   ingress:

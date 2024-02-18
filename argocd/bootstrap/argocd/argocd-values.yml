@@ -25,16 +25,13 @@ server:
   ingress:
     ## Enable creation of ingress resource
     enabled: true
-    ## Add ingressClassName to the Ingress
     ingressClassName: traefik
-    # ingress host
-    hosts:
-      - argocd.fszarek.com
-    ## TLS Secret Name
-    tls:
-      - secretName: argocd-tls
-        hosts:
-          - argocd.fszarek.com
-    ## Default ingress path
-    paths:
-      - /
+    hostname: argocd.fszarek.me
+    path: /
+    pathType: Prefix
+    tls: true
+    annotations:
+      nginx.ingress.kubernetes.io/service-upstream: "true"
+
+      cert-manager.io/cluster-issuer: letsencrypt-issuer
+      cert-manager.io/common-name: argocd.fszarek.me
