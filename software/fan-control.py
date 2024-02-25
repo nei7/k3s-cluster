@@ -12,18 +12,20 @@ p.start(0)
 
 try:
     while True:
-        
+
         temp = sp.getoutput("vcgencmd measure_temp|egrep -o '[0-9]*\.[0-9]*'")
-        # print(temp)
-        if float(temp) < 48:
+        if float(temp) < 40:
             p.ChangeDutyCycle(0)
         elif float(temp) > 70.0:
             p.ChangeDutyCycle(100)
         else:
-            p.ChangeDutyCycle(int(50*math.sin(math.pi*(float(temp)+55)/50)+50))
+            step = 80 / 30
+            delta = float(temp) - 40
+            speed = 20 + (round(delta) * step)
+            p.ChangeDutyCycle(speed)
 
         time.sleep(0.1)
-         
+
 
 except KeyboardInterrupt:
     pass

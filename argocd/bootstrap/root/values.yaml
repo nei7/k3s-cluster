@@ -49,3 +49,8 @@ apps:
     namespace: blog
     path: argocd/system/blog
     syncWave: 7
+
+  - name: logging
+    namespace: logging
+    path: argocd/system/logging
+    syncWave: 8
