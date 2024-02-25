@@ -6,7 +6,7 @@ metadata:
   namespace: blog
 
   annotations:
-    traefik.ingress.kubernetes.io/router.middlewares: compress@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: traefik-compress@kubernetescrd
 spec:
   tls:
     - hosts:
